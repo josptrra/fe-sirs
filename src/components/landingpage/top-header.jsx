@@ -8,7 +8,9 @@ export default function header() {
     <div className="bg-white w-full lg:w-9/12 mx-auto py-2">
       <div className="w-full flex items-center justify-between">
         <div>
-          <h1 className="font-bold text-4xl hidden lg:flex">MEDDICAL</h1>
+          <h1 className="font-bold text-4xl hidden lg:flex tracking-wider">
+            MEDDICAL
+          </h1>
         </div>
         <div className="flex p-3 gap-3 w-full lg:w-fit lg:gap-6">
           <div className="flex items-center justify-center gap-2 lg:gap-4">
