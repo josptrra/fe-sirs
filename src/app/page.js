@@ -1,14 +1,14 @@
-export default function Home() {
+import React from 'react';
+import Header from '@/components/landingpage/top-header';
+import Navbar from '@/components/landingpage/Navbar';
+import HeroSection from '@/components/landingpage/HeroSection';
+
+export default function page() {
   return (
-    <main className="flex min-h-screen flex-col items-center justify-between p-24">
-      <div className="z-10 max-w-5xl w-full items-center justify-between font-mono text-sm">
-        <h1 className="text-4xl font-bold text-center mb-8">
-          Sistem Informasi Rumah Sakit
-        </h1>
-        <p className="text-center text-xl">
-          Selamat datang di Sistem Informasi Jadwal Dokter
-        </p>
-      </div>
-    </main>
+    <>
+      <Header />
+      <Navbar />
+      <HeroSection />
+    </>
   );
 }

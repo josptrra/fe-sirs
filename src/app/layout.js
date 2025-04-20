@@ -8,7 +8,7 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <body className={`${inter.className}`}>
-        <div className="mx-auto w-full max-w-screen-xl">
+        <div className="mx-auto w-full">
           <QueryProvider>{children}</QueryProvider>
         </div>
       </body>
