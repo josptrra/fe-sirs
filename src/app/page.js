@@ -3,6 +3,7 @@ import Header from '@/components/landingpage/top-header';
 import Navbar from '@/components/landingpage/Navbar';
 import HeroSection from '@/components/landingpage/HeroSection';
 import OurServices from '@/components/landingpage/OurServices';
+import Footer from '@/components/landingpage/Footer';
 
 export default function page() {
   return (
@@ -11,6 +12,7 @@ export default function page() {
       <Navbar />
       <HeroSection />
       <OurServices />
+      <Footer />
     </>
   );
 }
