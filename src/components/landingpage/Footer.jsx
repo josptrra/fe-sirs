@@ -37,7 +37,7 @@ export default function Footer() {
               </li>
             </ul>
           </div>
-          <div className="basis-1/5 p-[10px] text-base flex flex-col w-full lg:p-0">
+          <div className="basis-1/5 p-[10px] text-base flex flex-col w-full lg:p-0 gap-3">
             <h3 className="w-full lg:w-fit mb-6 relative font-bold text-lg text-center lg:text-start">
               Contact Us
             </h3>
