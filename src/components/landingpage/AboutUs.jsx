@@ -12,7 +12,7 @@ export default function AboutUs() {
       <h1 className=" text-blue-900 text-3xl font-bold lg:text-4xl tracking-wider py-4 lg:tracking-widest text-center">
         A Great Place to Receive Care
       </h1>
-      <p className="text-black text-lg text-justify mx-10 lg:text-center lg:w-3/6 lg:mx-auto tracking-widest">
+      <p className="text-black text-lg text-justify mx-10 lg:text-center lg:w-3/6 lg:mx-auto md:tracking-widest">
         Welcome to MEDDICAL, where convenience and care meet. Our easy-to-use
         online booking system lets you schedule appointments with specialist
         doctors based on your needs, at a time that fits your schedule. We’re
