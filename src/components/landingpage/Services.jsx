@@ -14,7 +14,7 @@ export default function Services() {
         Our Services
       </h1>
       <div className="flex w-8/12  mx-auto justify-center items-center gap-8">
-        <div className="flex flex-col mt-6 md:mt-0 rounded-lg w-10/12 md:w-fit  mx-auto overflow-hidden ">
+        <div className="flex flex-col mt-6 md:mt-0 rounded-lg w-full md:w-fit  mx-auto overflow-hidden ">
           <div className="flex flex-wrap md:flex-nowrap md:flex-col border items-center justify-center">
             <div className="flex flex-col items-center justify-center px-8 py-6 gap-3 w-1/2 md:w-full hover:bg-blue-900 hover:text-white">
               <TbFreeRights className="text-blue-500 text-4xl" />
