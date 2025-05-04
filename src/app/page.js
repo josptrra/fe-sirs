@@ -2,8 +2,10 @@ import React from 'react';
 import Header from '@/components/landingpage/top-header';
 import Navbar from '@/components/landingpage/Navbar';
 import HeroSection from '@/components/landingpage/HeroSection';
-import OurServices from '@/components/landingpage/OurServices';
 import Footer from '@/components/landingpage/Footer';
+import Services from '@/components/landingpage/Services';
+import AboutUs from '@/components/landingpage/AboutUs';
+import Doctors from '@/components/landingpage/Doctors';
 
 export default function page() {
   return (
@@ -11,7 +13,9 @@ export default function page() {
       <Header />
       <Navbar />
       <HeroSection />
-      <OurServices />
+      <AboutUs />
+      <Services />
+      <Doctors />
       <Footer />
     </>
   );

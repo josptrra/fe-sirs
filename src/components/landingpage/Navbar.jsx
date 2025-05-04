@@ -15,7 +15,6 @@ export default function Navbar() {
             <a href="#">About Us</a>
             <a href="#">Services</a>
             <a href="#">Doctors</a>
-            <a href="#">News</a>
             <a href="#">Contact</a>
           </ul>
         </div>
@@ -23,7 +22,7 @@ export default function Navbar() {
           <IoMdSearch className="text-3xl lg:text-4xl text-white" />
           <GiHamburgerMenu className="text-3xl text-white flex lg:hidden" />
           <button className="hidden lg:flex py-4 px-6 lg:px-10 bg-blue-300 rounded-full font-bold text-blue-900">
-            Appointment
+            Sign Up
           </button>
         </div>
       </div>
