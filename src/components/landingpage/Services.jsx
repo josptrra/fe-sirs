@@ -13,7 +13,7 @@ export default function Services() {
       <h1 className=" text-blue-900 text-3xl font-bold lg:text-4xl tracking-wider py-4 lg:tracking-widest text-center">
         Our Services
       </h1>
-      <div className="flex w-8/12  mx-auto justify-center items-center gap-8">
+      <div className="flex w-8/12  mx-auto justify-center items-center gap-12">
         <div className="flex flex-col mt-6 md:mt-0 rounded-lg w-full md:w-fit  mx-auto overflow-hidden ">
           <div className="flex flex-wrap md:flex-nowrap md:flex-col border items-center justify-center">
             <div className="flex flex-col items-center justify-center px-8 py-6 gap-3 w-1/2 md:w-full hover:bg-blue-900 hover:text-white">
@@ -67,7 +67,7 @@ export default function Services() {
               Always Caring
             </li>
           </ul>
-          <p className="text-justify tracking-widest py-8">
+          <p className="text-justify tracking-wide py-8">
             We are committed to providing the best care for every patient. With
             a team of medical experts in their respective fields, we ensure that
             every action taken is aimed at improving your quality of life.
@@ -75,7 +75,7 @@ export default function Services() {
             knowledge, we listen to and understand your health needs, ensuring
             comfort throughout the treatment process.
           </p>
-          <p className="text-justify  tracking-widest">
+          <p className="text-justify  tracking-wide">
             At our healthcare center, you will find the latest medical
             technology combined with a meticulous attention to every detail. We
             offer a wide range of medical services with recognized quality,
