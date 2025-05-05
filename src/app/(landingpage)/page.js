@@ -1,4 +1,5 @@
-import React from 'react';
+'use client';
+import '../globals.css';
 import Header from '@/components/landingpage/top-header';
 import Navbar from '@/components/landingpage/Navbar';
 import HeroSection from '@/components/landingpage/HeroSection';
@@ -7,9 +8,9 @@ import Services from '@/components/landingpage/Services';
 import AboutUs from '@/components/landingpage/AboutUs';
 import Doctors from '@/components/landingpage/Doctors';
 
-export default function page() {
+export default function RootLayout({ children }) {
   return (
-    <>
+    <main>
       <Header />
       <Navbar />
       <HeroSection />
@@ -17,6 +18,7 @@ export default function page() {
       <Services />
       <Doctors />
       <Footer />
-    </>
+      {children}
+    </main>
   );
 }

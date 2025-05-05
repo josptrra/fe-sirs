@@ -1,6 +1,7 @@
 import React from 'react';
 import { IoMdSearch } from 'react-icons/io';
 import { GiHamburgerMenu } from 'react-icons/gi';
+import Link from 'next/link';
 
 export default function Navbar() {
   return (
@@ -21,9 +22,12 @@ export default function Navbar() {
         <div className="flex gap-4 items-center">
           <IoMdSearch className="text-3xl lg:text-4xl text-white" />
           <GiHamburgerMenu className="text-3xl text-white flex lg:hidden" />
-          <button className="hidden lg:flex py-4 px-6 lg:px-10 bg-blue-300 rounded-full font-bold text-blue-900">
+          <Link
+            href="/login"
+            className="hidden lg:flex py-4 px-6 lg:px-10 bg-blue-300 rounded-full font-bold text-blue-900"
+          >
             Sign Up
-          </button>
+          </Link>
         </div>
       </div>
     </div>
