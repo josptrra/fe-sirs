@@ -1,5 +1,5 @@
 @import 'tailwindcss';
-@import "tw-animate-css";
+@import 'tw-animate-css';
 
 @custom-variant dark (&:is(.dark *));
 
@@ -123,4 +123,28 @@
 
 .transisi {
   @apply transition-all duration-500 ease-in-out;
+}
+
+.layanan-parent-styling {
+  @apply lg:grid lg:h-screen lg:grid-cols-[19rem_1fr] lg:grid-rows-[auto_1fr];
+}
+
+.layanan-header-layout-container {
+  @apply hidden border-b-[1px] border-b-gray-100 px-[2.8rem] py-[1.2rem] pr-[3.8rem] lg:block;
+}
+
+.layanan-main-children-styling {
+  @apply mx-auto my-0 -mt-5 flex w-full flex-col rounded-md border-[2px] border-gray-100 bg-white shadow-lg lg:gap-[2rem] lg:px-8 lg:py-8 lg:pb-8;
+}
+
+.layanan-global-container {
+  @apply w-full bg-gray-100 px-4 pb-8 lg:px-0 lg:pb-0;
+}
+
+.layanan-aside-container {
+  @apply border-solid bg-white md:row-[1/-1] lg:flex lg:flex-col lg:gap-[3.2rem] lg:border-r lg:border-r-gray-100 lg:px-[2.4rem] lg:py-[2rem] lg:pl-[1.6rem];
+}
+
+.layanan-main-container {
+  @apply flex flex-col justify-start overflow-y-scroll bg-gray-50 pt-6 lg:px-8 lg:pb-[6.4rem] lg:pt-12;
 }

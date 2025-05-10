@@ -29,7 +29,9 @@ export async function LoginUser(data) {
     });
 
     const token = response.data.token;
+    const userId = response.data.data._id;
     cookies().set('jwt', token);
+    (await cookies()).set('id', userId);
 
     return response.data;
   } catch (err) {
