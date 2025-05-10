@@ -5,7 +5,7 @@ import axios from 'axios';
 import { cookies } from 'next/headers';
 import { redirect } from 'next/navigation';
 
-export async function registerUser(data) {
+export async function RegisterUser(data) {
   try {
     const response = await axios.post(`${apiurl}/users/signup`, {
       name: data.name,
@@ -21,7 +21,7 @@ export async function registerUser(data) {
   }
 }
 
-export async function loginUser(data) {
+export async function LoginUser(data) {
   try {
     const response = await axios.post(`${apiurl}/users/login`, {
       email: data.email,
@@ -38,7 +38,7 @@ export async function loginUser(data) {
   }
 }
 
-export async function logoutUser() {
+export async function LogoutUser() {
   cookies().delete('jwt');
   redirect('/login');
 }

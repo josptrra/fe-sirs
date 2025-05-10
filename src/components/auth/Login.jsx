@@ -1,8 +1,41 @@
-import React from 'react';
+'use client';
+
+import React, { useState } from 'react';
 import Link from 'next/link';
 import LogoRumahSakit from '../ui/LogoRumahSakit';
+import ButtonAuth from './ButtonAuth';
+import { useForm } from 'react-hook-form';
+import { useMutation, useQueryClient } from '@tanstack/react-query';
+import toast from 'react-hot-toast';
+import { LoginUser } from '@/services/auth';
+import { useRouter } from 'next/navigation';
 
 export default function Login() {
+  const [isLoading, setIsLoading] = useState(false);
+  const { register, handleSubmit, reset } = useForm();
+
+  const router = useRouter();
+  const queryClient = useQueryClient();
+
+  function onSubmit(data) {
+    setIsLoading(true);
+    login(data);
+  }
+
+  const { mutate: login } = useMutation({
+    mutationFn: (data) => LoginUser(data),
+    onSuccess: (response) => {
+      queryClient.setQueryData(['user'], response);
+      router.push('/dashboard');
+      setIsLoading(false);
+    },
+    onError: () => {
+      toast.error('Login gagal! Periksa kembali data anda.');
+      reset();
+      setIsLoading(false);
+    },
+  });
+
   return (
     <div className="h-screen w-full bg-white bg-[url(/index/bg-navbar.png)]">
       <div className="flex min-h-screen w-full items-center justify-center">
@@ -15,22 +48,26 @@ export default function Login() {
             <p className="mb-4 mt-1 text-[12px] text-gray-400 2xl:text-[14px]">
               Autentikasi Diperlukan untuk Masuk ke Layanan!
             </p>
-            <form>
+            <form onSubmit={handleSubmit(onSubmit)}>
               <input
                 type="email"
                 id="email"
                 className="mt-2 w-full border p-2 py-3 text-sm outline-none 2xl:text-base"
                 placeholder="Masukkan email anda"
+                {...register('email', {
+                  required: 'Masukkan email anda!',
+                })}
               />
               <input
                 type="password"
                 id="password"
                 className="mt-2 w-full border p-2 py-3 text-sm outline-none 2xl:text-base"
                 placeholder="Masukkan sandi anda"
+                {...register('password', {
+                  required: 'Masukkan password anda!',
+                })}
               />
-              <button className="bg-blue-900 mt-6 w-full border py-3 text-center font-bold text-white">
-                Masuk
-              </button>
+              <ButtonAuth title="Masuk" isLoading={isLoading} />
             </form>
             <Link
               href="/register"

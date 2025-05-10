@@ -7,7 +7,7 @@ import { useState } from 'react';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { useForm } from 'react-hook-form';
 import toast from 'react-hot-toast';
-import { registerUser } from '@/services/auth';
+import { RegisterUser } from '@/services/auth';
 import ButtonAuth from './ButtonAuth';
 
 export default function Register() {
@@ -22,7 +22,7 @@ export default function Register() {
   }
 
   const { mutate: regis } = useMutation({
-    mutationFn: (data) => registerUser(data),
+    mutationFn: (data) => RegisterUser(data),
     onSuccess: (response) => {
       queryClient.setQueryData(['user'], response);
       toast.success('Akun berhasil dibuat, silahkan kembali ke halaman login');
@@ -44,14 +44,14 @@ export default function Register() {
   return (
     <div className="h-full w-full bg-white bg-[url(/index/bg-navbar.png)]">
       <div className="flex min-h-screen w-full items-center justify-center py-0 lg:py-10 xl:py-0">
-        <div className="transisi flex w-11/12 flex-col rounded-xl bg-white p-4 hover:shadow-2xl md:w-8/12 md:p-8 lg:w-5/12 2xl:w-7/12 2xl:flex-row 2xl:py-16 2xl:pr-12">
+        <div className="transisi flex w-11/12 flex-col rounded-xl bg-white p-4 shadow-md hover:shadow-2xl md:w-8/12 md:p-8 lg:w-5/12 2xl:w-7/12 2xl:flex-row 2xl:py-16 2xl:pr-12">
           <LogoRumahSakit />
           <div className="flex flex-col border-t-[1px] p-2 text-center 2xl:w-1/2 2xl:border-t-0 2xl:py-16 2xl:pl-16 2xl:pr-12 2xl:pt-8 2xl:text-start">
             <h1 className="mt-3 text-2xl font-bold md:mt-3 2xl:mt-0 2xl:text-3xl">
               Register Akun Layanan
             </h1>
             <p className="mb-4 mt-1 text-[12px] text-gray-400 2xl:text-[14px]">
-              Persetujuan registrasi akun akan memerlukan beberapa waktu!
+              Anda memerlukan akun untuk menikmati layanan kami.
             </p>
             <form onSubmit={handleSubmit(onSubmit, onError)}>
               <input
