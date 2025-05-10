@@ -1,5 +1,5 @@
 'use client';
-import '../globals.css';
+import '../../globals.css';
 import Header from '@/components/landingpage/top-header';
 import Navbar from '@/components/landingpage/Navbar';
 import HeroSection from '@/components/landingpage/HeroSection';
