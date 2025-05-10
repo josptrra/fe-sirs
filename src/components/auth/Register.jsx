@@ -1,8 +1,46 @@
+'use client';
+
 import React from 'react';
 import Link from 'next/link';
 import LogoRumahSakit from '../ui/LogoRumahSakit';
+import { useState } from 'react';
+import { useMutation, useQueryClient } from '@tanstack/react-query';
+import { useForm } from 'react-hook-form';
+import toast from 'react-hot-toast';
+import { registerUser } from '@/services/auth';
+import ButtonAuth from './ButtonAuth';
 
 export default function Register() {
+  const [isLoading, setIsLoading] = useState(false);
+  const { register, handleSubmit, reset } = useForm();
+
+  const queryClient = useQueryClient();
+
+  function onSubmit(data) {
+    setIsLoading(true);
+    regis(data);
+  }
+
+  const { mutate: regis } = useMutation({
+    mutationFn: (data) => registerUser(data),
+    onSuccess: (response) => {
+      queryClient.setQueryData(['user'], response);
+      toast.success('Akun berhasil dibuat, silahkan kembali ke halaman login');
+      setIsLoading(false);
+    },
+    onError: () => {
+      toast.error('Registrasi akun gagal! Periksa kembali data anda.');
+      reset();
+      setIsLoading(false);
+    },
+  });
+
+  function onError(errors) {
+    if (errors.password?.type === 'minLength') {
+      toast.error(errors.password.message);
+    }
+  }
+
   return (
     <div className="h-full w-full bg-white bg-[url(/index/bg-navbar.png)]">
       <div className="flex min-h-screen w-full items-center justify-center py-0 lg:py-10 xl:py-0">
@@ -15,40 +53,39 @@ export default function Register() {
             <p className="mb-4 mt-1 text-[12px] text-gray-400 2xl:text-[14px]">
               Persetujuan registrasi akun akan memerlukan beberapa waktu!
             </p>
-            <form>
+            <form onSubmit={handleSubmit(onSubmit, onError)}>
               <input
                 id="username"
                 type="text"
                 className="mt-2 w-full border p-2 py-3 text-sm outline-none 2xl:text-base"
-                placeholder="Masukkan username anda"
+                placeholder="Masukkan nama lengkap anda"
+                {...register('name', {
+                  required: 'Nama lengkap anda diperlukan!',
+                })}
               />
               <input
                 id="email"
                 type="email"
                 className="mt-2 w-full border p-2 py-3 text-sm outline-none 2xl:text-base"
                 placeholder="Masukkan email anda"
+                {...register('email', {
+                  required: 'Email wajib diisi!',
+                })}
               />
               <input
                 id="password"
                 type="password"
                 className="mt-2 w-full border p-2 py-3 text-sm outline-none 2xl:text-base"
                 placeholder="Masukkan sandi anda"
+                {...register('password', {
+                  required: 'Kata sandi wajib diisi!',
+                  minLength: {
+                    value: 7,
+                    message: 'Kata sandi minimal 7 digit',
+                  },
+                })}
               />
-              <input
-                id="passwordrepeat"
-                type="password"
-                className="mt-2 w-full border p-2 py-3 text-sm outline-none 2xl:text-base"
-                placeholder="Masukkan ulang sandi anda"
-              />
-              <input
-                id="instansi"
-                type="text"
-                className="mt-2 w-full border p-2 py-3 text-sm outline-none 2xl:text-base"
-                placeholder="Masukkan asal instansi anda"
-              />
-              <button className="bg-blue-900 my-3 mt-5 w-full border py-3 text-center font-bold text-white">
-                Registrasi
-              </button>
+              <ButtonAuth title="Registrasi" isLoading={isLoading} />
             </form>
             <span className="text-center text-[12px] text-gray-400 2xl:mt-2 2xl:text-[14px]">
               Sudah punya akun?{' '}

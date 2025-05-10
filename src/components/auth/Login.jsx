@@ -6,7 +6,7 @@ export default function Login() {
   return (
     <div className="h-screen w-full bg-white bg-[url(/index/bg-navbar.png)]">
       <div className="flex min-h-screen w-full items-center justify-center">
-        <div className="transisi flex w-11/12 flex-col rounded-xl bg-white p-4 hover:shadow-2xl md:w-8/12 md:p-8 lg:w-5/12 2xl:w-7/12 2xl:flex-row 2xl:py-16 2xl:pr-12">
+        <div className="transisi flex w-11/12 flex-col rounded-xl bg-white p-4 shadow-md hover:shadow-2xl md:w-8/12 md:p-8 lg:w-5/12 2xl:w-7/12 2xl:flex-row 2xl:py-16 2xl:pr-12">
           <LogoRumahSakit />
           <div className="flex flex-col border-t-[1px] p-2 text-center 2xl:w-1/2 2xl:border-t-0 2xl:py-16 2xl:pl-16 2xl:pr-12 2xl:pt-8 2xl:text-start">
             <h1 className="mt-3 text-2xl font-bold md:mt-3 2xl:mt-0 2xl:text-3xl">
