@@ -38,12 +38,6 @@ export default function Login() {
             >
               Registrasi
             </Link>
-            <span className="text-center text-[12px] text-gray-400 2xl:mt-4 2xl:text-[14px]">
-              Lupa kata sandi?{' '}
-              <Link href="" className="font-semibold hover:text-[#28166F]">
-                Klik disini!
-              </Link>
-            </span>
           </div>
         </div>
       </div>
