@@ -70,15 +70,3 @@ Aplikasi modern untuk manajemen janji temu pasien dan penjadwalan dokter dengan 
 | `npm run start` | Menjalankan versi production |
 | `npm run lint` | Menjalankan ESLint |
 | `npm run format` | Format code dengan Prettier |
-
-## 🤝 Berkontribusi
-
-Pull request dipersilakan! Untuk perubahan besar, buka issue terlebih dahulu untuk mendiskusikan apa yang ingin Anda ubah.
-
-## 📄 Lisensi
-
-[MIT](https://choosealicense.com/licenses/mit/)
-
----
-
-Made with ❤️ by [Your Name]

@@ -148,3 +148,7 @@
 .layanan-main-container {
   @apply flex flex-col justify-start overflow-y-scroll bg-gray-50 pt-6 lg:px-8 lg:pb-[6.4rem] lg:pt-12;
 }
+
+.input-form-style {
+  @apply mb-3 mt-2 w-full rounded-md border px-3 py-[12px] text-xs md:py-[10px] md:text-sm xl:text-base;
+}
