@@ -152,3 +152,11 @@
 .input-form-style {
   @apply mb-3 mt-2 w-full rounded-md border px-3 py-[12px] text-xs md:py-[10px] md:text-sm xl:text-base;
 }
+
+.table-container {
+  @apply w-full text-center text-[12px] md:text-sm xl:text-base;
+}
+
+.primary-color {
+  background: linear-gradient(121deg, #01458e 7.76%, #29166f 99.85%);
+}

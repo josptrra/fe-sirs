@@ -17,7 +17,7 @@ export default function HeaderUser() {
         {isLoadingUser ? (
           <span>Loading...</span>
         ) : (
-          <span>Selamat Datang, {user?.name || 'User'}</span>
+          <span>Selamat Datang, {user?.nama || 'User'}</span>
         )}
       </div>
     </div>

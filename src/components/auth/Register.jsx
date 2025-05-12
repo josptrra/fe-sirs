@@ -59,7 +59,7 @@ export default function Register() {
                 type="text"
                 className="mt-2 w-full border p-2 py-3 text-sm outline-none 2xl:text-base"
                 placeholder="Masukkan nama lengkap anda"
-                {...register('name', {
+                {...register('nama', {
                   required: 'Nama lengkap anda diperlukan!',
                 })}
               />

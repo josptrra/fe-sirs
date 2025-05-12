@@ -8,10 +8,9 @@ import { redirect } from 'next/navigation';
 export async function RegisterUser(data) {
   try {
     const response = await axios.post(`${apiurl}/users/signup`, {
-      name: data.name,
       email: data.email,
       password: data.password,
-      role: 'pasien',
+      nama: data.nama,
     });
 
     return response.data;
@@ -29,7 +28,7 @@ export async function LoginUser(data) {
     });
 
     const token = response.data.token;
-    const userId = response.data.data._id;
+    const userId = response.data.user._id;
     cookies().set('jwt', token);
     (await cookies()).set('id', userId);
 
@@ -42,5 +41,6 @@ export async function LoginUser(data) {
 
 export async function LogoutUser() {
   cookies().delete('jwt');
+  cookies().delete('id');
   redirect('/login');
 }
