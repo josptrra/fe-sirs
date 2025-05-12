@@ -12,27 +12,28 @@ Aplikasi modern untuk manajemen janji temu pasien dan penjadwalan dokter dengan 
 - 📅 Sistem penjadwalan janji temu pasien
 - ⚕️ Manajemen jadwal dokter
 - 🔔 Notifikasi & pengingat
-- 📊 Dashboard analitik
-- 🔒 Autentikasi aman
+- 🔒 Safe Authentications
 
 ## 🛠 Teknologi
 
 - **Framework**: Next.js 14 (App Router)
 - **State Management**: React Query v5
 - **Styling**: Tailwind CSS + CSS Modules
-- **UI Components**: shadcn/ui
+- **UI Components**: shadcn/ui (Modals only.)
 - **Form Handling**: React Hook Form
 - **Icons**: Lucide React
 
 ## 🚀 Cara Menjalankan
 
 1. **Clone repository**
+
    ```bash
-   git clone https://github.com/username/repo-name.git
-   cd repo-name
+   git clone https://github.com/josptrra/fe-sirs
+   cd fe-sirs
    ```
 
 2. **Install dependencies**
+
    ```bash
    npm install
    # atau
@@ -41,13 +42,8 @@ Aplikasi modern untuk manajemen janji temu pasien dan penjadwalan dokter dengan 
    pnpm install
    ```
 
-3. **Setup environment variables**
-   ```bash
-   cp .env.example .env.local
-   ```
-   Isi variabel environment yang diperlukan di `.env.local`
+3. **Jalankan development server**
 
-4. **Jalankan development server**
    ```bash
    npm run dev
    # atau
@@ -56,17 +52,17 @@ Aplikasi modern untuk manajemen janji temu pasien dan penjadwalan dokter dengan 
    pnpm dev
    ```
 
-5. **Buka di browser**
+4. **Buka di browser**
    ```
    http://localhost:3000
    ```
 
 ## 🏗️ Script Penting
 
-| Script | Deskripsi |
-|--------|-----------|
-| `npm run dev` | Menjalankan development server |
-| `npm run build` | Membuat versi production |
-| `npm run start` | Menjalankan versi production |
-| `npm run lint` | Menjalankan ESLint |
-| `npm run format` | Format code dengan Prettier |
+| Script           | Deskripsi                      |
+| ---------------- | ------------------------------ |
+| `npm run dev`    | Menjalankan development server |
+| `npm run build`  | Membuat versi production       |
+| `npm run start`  | Menjalankan versi production   |
+| `npm run lint`   | Menjalankan ESLint             |
+| `npm run format` | Format code dengan Prettier    |
