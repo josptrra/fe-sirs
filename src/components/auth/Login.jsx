@@ -9,6 +9,7 @@ import { useMutation, useQueryClient } from '@tanstack/react-query';
 import toast from 'react-hot-toast';
 import { LoginUser } from '@/services/auth';
 import { useRouter } from 'next/navigation';
+import { GetUserById } from '@/services/getUserData';
 
 export default function Login() {
   const [isLoading, setIsLoading] = useState(false);
@@ -26,8 +27,24 @@ export default function Login() {
     mutationFn: (data) => LoginUser(data),
     onSuccess: (response) => {
       queryClient.setQueryData(['user'], response);
-      router.push('/dashboard');
-      setIsLoading(false);
+      GetUserById()
+        .then((userData) => {
+          const userRole = userData.role;
+
+          if (userRole === 'pasien') {
+            router.push('/pasien');
+          } else if (userRole === 'dokter') {
+            router.push('/doctor');
+          } else {
+            toast.error('Role tidak terdaftar!');
+          }
+        })
+        .catch((error) => {
+          toast.error('Terjadi kesalahan saat memuat data pengguna');
+        })
+        .finally(() => {
+          setIsLoading(false);
+        });
     },
     onError: () => {
       toast.error('Login gagal! Periksa kembali data anda.');

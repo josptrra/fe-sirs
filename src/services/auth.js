@@ -29,7 +29,7 @@ export async function LoginUser(data) {
 
     const token = response.data.token;
     const userId = response.data.user._id;
-    cookies().set('jwt', token);
+    (await cookies()).set('jwt', token);
     (await cookies()).set('id', userId);
 
     return response.data;
@@ -40,7 +40,7 @@ export async function LoginUser(data) {
 }
 
 export async function LogoutUser() {
-  cookies().delete('jwt');
-  cookies().delete('id');
+  (await cookies()).delete('jwt');
+  (await cookies()).delete('id');
   redirect('/login');
 }

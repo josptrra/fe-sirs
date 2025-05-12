@@ -143,7 +143,7 @@ export default function JanjiTemu() {
           </InputFormSistem>
           <InputFormSistem title="Tanggal Temu Dokter" required>
             <input
-              className="input-form-style"
+              className="mb-3 mt-2 w-fit rounded-md border px-3 py-[12px] text-xs md:py-[10px] md:text-sm xl:text-base"
               type="date"
               id="tanggal"
               {...register('tanggal', {
