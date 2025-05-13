@@ -5,9 +5,19 @@ import { getJanjiTemuByDokter } from '@/services/janjiTemu';
 import { useQuery } from '@tanstack/react-query';
 import { getIdDokterFromCookies } from '@/services/getDoctorsId';
 import { GetUserById } from '@/services/getUserData';
+import { Dialog, DialogContent, DialogTrigger } from '@/components/ui/dialog';
+import ButtonSistem from '../ui/ButtonSistem';
+import { DialogTitle } from '@radix-ui/react-dialog';
+import { formatDateForInput } from '@/lib/dateUtils';
+import { PostFormPemeriksaan } from '@/services/pemeriksaan';
+import { deleteJanjiTemu } from '@/services/pemeriksaan';
+import toast from 'react-hot-toast';
 
 export default function PeriksaPasien() {
   const [data, setData] = useState([]);
+  const [selectedJanjiTemu, setSelectedJanjiTemu] = useState(null);
+  const [analisa, setAnalisa] = useState('');
+  const [resepObat, setResepObat] = useState('');
 
   const { isLoading: isLoadingUser, data: user } = useQuery({
     queryKey: ['dataUser'],
@@ -37,6 +47,49 @@ export default function PeriksaPasien() {
 
     fetchIdDokterAndFilterData();
   }, [janjiTemuData]);
+
+  const handleFormSubmit = async (event) => {
+    event.preventDefault(); // Mencegah refresh halaman
+
+    if (!selectedJanjiTemu) return;
+
+    const formData = {
+      idPasien: selectedJanjiTemu.pasien.idPasien._id,
+      namaPasien: selectedJanjiTemu.pasien.namaPasien,
+      nik: selectedJanjiTemu.pasien.nik,
+      umur: selectedJanjiTemu.pasien.umur,
+      alamat: selectedJanjiTemu.pasien.alamat,
+      noHp: selectedJanjiTemu.pasien.noHp,
+      idDokter: user._id,
+      keluhan: selectedJanjiTemu.keluhan,
+      tanggal: selectedJanjiTemu.tanggal,
+      analisa,
+      resepObat,
+    };
+
+    try {
+      const response = await PostFormPemeriksaan(
+        formData,
+        selectedJanjiTemu._id
+      );
+
+      if (response && response.status === 201) {
+        // Penghapusan janji temu jika pemeriksaan berhasil
+        const deleteResponse = await deleteJanjiTemu(selectedJanjiTemu._id);
+
+        // Periksa apakah penghapusan berhasil
+        if (deleteResponse && deleteResponse.status === 200) {
+          console.log('Pemeriksaan berhasil dan janji temu dihapus');
+        } else {
+          console.error('Gagal menghapus janji temu:', deleteResponse);
+        }
+      } else {
+        toast.success('Pemeriksaan berhasil, silahkan reload halaman!'); //YA ALLLAH AKU NGAKAK NIAN INI
+      }
+    } catch (error) {
+      console.error('Error saat mengirim data pemeriksaan:', error);
+    }
+  };
 
   if (isLoadingJanjiTemus) return <p>Loading...</p>;
 
@@ -104,10 +157,96 @@ export default function PeriksaPasien() {
                       <p className="p-break-words">{e.keluhan}</p>
                     </td>
                     <td className="border border-gray-300 ">
-                      {' '}
-                      <button className="w-[30px] rounded-md bg-blue-900 p-1 font-bold text-white">
-                        ...
-                      </button>
+                      <Dialog>
+                        <DialogTrigger>
+                          <div
+                            className="w-[30px] rounded-md bg-blue-900 p-1 font-bold text-white"
+                            onClick={() => {
+                              console.log('Selected Janji Temu ID:', e._id);
+                              setSelectedJanjiTemu(e);
+                            }}
+                          >
+                            ...
+                          </div>
+                        </DialogTrigger>
+                        <DialogContent className="w-full border-blue-900 border-[3px] flex flex-col justify-center">
+                          <DialogTitle>Form Pemeriksaan</DialogTitle>
+                          <form onSubmit={handleFormSubmit}>
+                            <div className="w-full mb-2">
+                              <h1 className="uppercase text-sm font-medium pb-2">
+                                Nama Pasien
+                              </h1>
+                              <input
+                                className="text-sm border py-2 px-3 font-light outline-none w-full"
+                                readOnly
+                                value={e.pasien.namaPasien}
+                              />
+                            </div>
+                            <div className="w-full mb-2">
+                              <h1 className="uppercase text-sm font-medium pb-2">
+                                NIK
+                              </h1>
+                              <input
+                                type="number"
+                                readOnly
+                                className="text-sm border py-2 px-3 font-light outline-none w-full"
+                                value={e.pasien.nik}
+                              />
+                            </div>
+                            <div className="w-full mb-2">
+                              <h1 className="uppercase text-sm font-medium pb-2">
+                                Umur Pasien
+                              </h1>
+                              <input
+                                readOnly
+                                className="text-sm border py-2 px-3 font-light outline-none w-full"
+                                value={e.pasien.umur}
+                              />
+                            </div>
+                            <div className="w-full mb-2">
+                              <h1 className="uppercase text-sm font-medium pb-2">
+                                Tanggal Periksa
+                              </h1>
+                              <input
+                                readOnly
+                                className="text-sm border py-2 px-3 font-light outline-none w-full"
+                                value={formatDateForInput(e.tanggal)}
+                              />
+                            </div>
+                            <div className="w-full mb-2">
+                              <h1 className="uppercase text-sm font-medium pb-2">
+                                Keluhan
+                              </h1>
+                              <input
+                                readOnly
+                                className="text-sm border py-2 px-3 font-light outline-none w-full"
+                                value={e.keluhan}
+                              />
+                            </div>
+                            <div className="w-full mb-2">
+                              <h1 className="uppercase text-sm font-medium pb-2">
+                                Hasil Diagnosa Pasien
+                              </h1>
+                              <input
+                                className="text-sm border py-2 px-3 font-light outline-none w-full"
+                                value={analisa}
+                                onChange={(e) => setAnalisa(e.target.value)}
+                              />
+                            </div>
+                            <div className="w-full mb-2">
+                              <h1 className="uppercase text-sm font-medium pb-2">
+                                Resep obat
+                              </h1>
+                              <input
+                                className="text-sm border py-2 px-3 font-light outline-none w-full"
+                                value={resepObat}
+                                onChange={(e) => setResepObat(e.target.value)}
+                              />
+                            </div>
+                            <ButtonSistem name="Kirim data periksa" />
+                          </form>
+                        </DialogContent>
+                      </Dialog>
                     </td>
                   </tr>
                 ))

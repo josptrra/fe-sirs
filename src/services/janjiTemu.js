@@ -6,7 +6,6 @@ import { cookies } from 'next/headers';
 
 export async function PostFormJanjiTemu(data) {
   try {
-    // Menunggu hasil cookies() sebelum mengakses idPasien
     const cookieStore = await cookies();
     const idPasien = cookieStore.get('id')?.value;
 

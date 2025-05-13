@@ -23,28 +23,14 @@ export default function JanjiTemu() {
   const [isLoading, setIsLoading] = useState(false);
   const { register, handleSubmit, reset, setValue } = useForm();
 
-  // State untuk menyimpan form data
-  // const [formData, setFormData] = useState({
-  //   namaPasien: '',
-  //   nik: '',
-  //   umur: '',
-  //   alamat: '',
-  //   noHp: '',
-  //   idDokter: '',
-  //   tanggal: '',
-  //   keluhan: '',
-  // });
-
   const [selectedDoctor, setSelectedDoctor] = useState(null);
 
-  // Handle form submission
   function onSubmit(data) {
     setIsLoading(true);
     console.log(data);
     postJanjiTemu(data);
   }
 
-  // useMutation untuk mengirim data janji temu
   const { mutate: postJanjiTemu } = useMutation({
     mutationFn: (data) => PostFormJanjiTemu(data),
     onSuccess: (response) => {
