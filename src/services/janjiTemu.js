@@ -42,3 +42,21 @@ export async function PostFormJanjiTemu(data) {
     return null;
   }
 }
+
+export async function getJanjiTemuByDokter() {
+  try {
+    const cookieStore = await cookies();
+    const idDokter = cookieStore.get('id');
+
+    if (!idDokter) {
+      throw new Error('ID Dokter tidak ditemukan di cookies');
+    }
+
+    const response = await axios.get(`${apiurl}/janjiTemu`);
+
+    return response.data.data;
+  } catch (err) {
+    console.error('Error saat mengambil data janji temu:', err);
+    throw new Error('Gagal mengambil data janji temu');
+  }
+}

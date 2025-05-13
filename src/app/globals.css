@@ -160,3 +160,11 @@
 .primary-color {
   background: linear-gradient(121deg, #01458e 7.76%, #29166f 99.85%);
 }
+
+.p-break-words {
+  @apply text-wrap break-words;
+}
+
+.td-default-table {
+  @apply w-36 max-w-36 border border-gray-300 px-4 py-2 lg:max-w-36 2xl:max-w-40;
+}
