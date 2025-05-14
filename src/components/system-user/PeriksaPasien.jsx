@@ -107,7 +107,9 @@ export default function PeriksaPasien() {
     }
   };
 
-  const today = new Date().toISOString().split('T')[0]; // format: 'YYYY-MM-DD'
+  // const today = new Date().toISOString().split('T')[0]; // format: 'YYYY-MM-DD'
+  const today = new Date();
+  const localDate = today.toLocaleDateString('en-CA');
 
   return (
     <div className="layanan-global-container">
@@ -171,7 +173,8 @@ export default function PeriksaPasien() {
               {data.length > 0 ? (
                 data.map((e, index) => {
                   const isDisabled =
-                    new Date(e.tanggal).toISOString().split('T')[0] !== today;
+                    new Date(e.tanggal).toISOString().split('T')[0] !==
+                    localDate;
 
                   return (
                     <tr

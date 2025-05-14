@@ -1,11 +1,12 @@
 'use client';
 
+import DashboardPasien from '@/components/system-user/DashboardPasien';
 import React from 'react';
 
 export default function RootLayout({ children }) {
   return (
     <main>
-      <h1>Dashboard</h1>
+      <DashboardPasien />
     </main>
   );
 }

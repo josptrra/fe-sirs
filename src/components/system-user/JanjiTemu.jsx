@@ -26,6 +26,9 @@ export default function JanjiTemu() {
 
   const [selectedDoctor, setSelectedDoctor] = useState(null);
 
+  const today = new Date();
+  const localDate = today.toLocaleDateString('en-CA');
+
   function onSubmit(data) {
     setIsLoading(true);
     console.log(data);
@@ -139,7 +142,10 @@ export default function JanjiTemu() {
               className="mb-3 mt-2 w-fit rounded-md border px-3 py-[12px] text-xs md:py-[10px] md:text-sm xl:text-base"
               type="date"
               id="tanggal"
-              min={getDateToday()}
+              // min={getDateToday()}
+              // min={new Date().toISOString().split('T')[0]}
+
+              min={localDate}
               {...register('tanggal', {
                 required: 'Pilih tanggal janji temu!',
               })}

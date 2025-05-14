@@ -22,3 +22,20 @@ export async function getDoctorNameById(idDokter) {
     throw error;
   }
 }
+
+export async function fetchPasienDokterHariIni() {
+  try {
+    const response = await fetch(apiurl + `/doctors/handlePasien`);
+    const data = await response.json();
+
+    if (response.ok && data.status === 'success') {
+      return data.data;
+    } else {
+      console.error('Failed to fetch pasien data:', data.message);
+      return [];
+    }
+  } catch (error) {
+    console.error('Error fetching pasien data:', error);
+    return [];
+  }
+}
