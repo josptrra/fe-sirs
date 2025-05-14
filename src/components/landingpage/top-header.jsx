@@ -2,16 +2,13 @@ import React from 'react';
 import { FiPhoneCall } from 'react-icons/fi';
 import { FaLocationDot } from 'react-icons/fa6';
 import { IoMdTime } from 'react-icons/io';
+import LogoNavbar from './LogoNavbar';
 
 export default function header() {
   return (
     <div className="bg-white w-full lg:w-9/12 mx-auto py-2">
       <div className="w-full flex items-center justify-between">
-        <div>
-          <h1 className="font-bold text-4xl hidden lg:flex tracking-wider">
-            MEDDICAL
-          </h1>
-        </div>
+        <LogoNavbar />
         <div className="flex p-3 gap-3 w-full lg:w-fit lg:gap-6">
           <div className="flex items-center justify-center gap-2 lg:gap-4">
             <FiPhoneCall className="text-2xl lg:text-4xl" />

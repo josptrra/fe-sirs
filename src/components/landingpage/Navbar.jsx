@@ -24,9 +24,9 @@ export default function Navbar() {
           <GiHamburgerMenu className="text-3xl text-white flex lg:hidden" />
           <Link
             href="/login"
-            className="hidden lg:flex py-4 px-6 lg:px-10 bg-blue-300 rounded-full font-bold text-blue-900"
+            className="hidden lg:flex py-4 px-6 lg:px-10 bg-white rounded-full font-bold text-blue-900"
           >
-            Sign Up
+            Login
           </Link>
         </div>
       </div>

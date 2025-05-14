@@ -1,6 +1,7 @@
 import React from 'react';
 import { BsEnvelopePaper } from 'react-icons/bs';
 import { TiMessages } from 'react-icons/ti';
+import LogoNavbar from './LogoNavbar';
 
 export default function Footer() {
   return (
@@ -10,13 +11,8 @@ export default function Footer() {
     >
       <div className="w-10/12 lg:w-9/12 mx-auto">
         <div className="w-full flex flex-wrap flex-col md:flex-row items-start justify-between mx-auto">
-          <div className="basis-1/4 p-[10px] lg:p-0 flex flex-col">
-            <h1 className="text-3xl text-center tracking-widest font-semibold lg:text-start text-blue-500">
-              MEDDICAL
-            </h1>
-            <p className="pt-4 text-center text-lg tracking-wider lg:text-start">
-              Leading the Way in Medical Excellence, Trusted Care.
-            </p>
+          <div className="w-fit rounded-xl p-[10px] lg:p-2 flex flex-col border border-white bg-slate-50 text-blue-900 ">
+            <LogoNavbar />
           </div>
           <div className="basis-1/7 p-[10px] w-full py-8 lg:p-0">
             <h3 className="w-full lg:w-fit mb-6 relative font-bold text-lg text-center ">
@@ -67,7 +63,7 @@ export default function Footer() {
         </div>
         <hr className="w-full border-white my-4 mx-auto" />
         <p className="text-center text-lg pt-4 text-sm">
-          ©️ 2025 - Siloam All Rights Reserved by PNTEC
+          ©️ 2025 - Rumah Sakit FASILKOM All Rights Reserved by PNTEC
         </p>
       </div>
     </footer>
