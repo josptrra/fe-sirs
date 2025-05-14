@@ -35,7 +35,13 @@ export default function JanjiTemu() {
     mutationFn: (data) => PostFormJanjiTemu(data),
     onSuccess: (response) => {
       setIsLoading(false);
-      toast.success('Janji temu dengan dokter telah dibuat!', response);
+      toast.success(
+        'Janji temu dengan dokter telah dibuat! Halaman akan dimuat ulang',
+        response
+      );
+      setTimeout(() => {
+        window.location.reload();
+      }, 3000);
     },
     onError: () => {
       toast.error('Terjadi kesalahan, coba lagi!');
@@ -52,7 +58,7 @@ export default function JanjiTemu() {
   return (
     <>
       <h1 className="uppercase text-center text-2xl font-semibold">
-        Buat Janji Temu Bersama Dokter Spesialis Pilihan Anda!
+        Buat Janji Temu Bersama Dokter Spesialis
       </h1>
       <form onSubmit={handleSubmit(onSubmit)}>
         <FormSection title="Form Kelengkapan Data Pasien">

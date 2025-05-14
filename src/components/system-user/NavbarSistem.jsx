@@ -28,7 +28,7 @@ export default function NavbarSistem() {
         <NavbarSistemList NavList="Buat Janji Temu" href="/pasien/janjitemu" />
         <NavbarSistemList
           NavList="Riwayat Pengobatan"
-          href="/pasien/riwayatmedis"
+          href="/pasien/rekam-medis"
         />
         <NavbarSistemHead NavHead="Akun" />
         <button

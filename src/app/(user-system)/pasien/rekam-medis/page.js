@@ -1,12 +1,12 @@
 'use client';
 
-import RiwayatPasien from '@/components/system-user/RiwayatPasien';
+import RekamMedis from '@/components/system-user/RekamMedis';
 import React from 'react';
 
 export default function RootLayout({ children }) {
   return (
     <main>
-      <RiwayatPasien />
+      <RekamMedis />
     </main>
   );
 }
