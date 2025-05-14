@@ -40,7 +40,7 @@ export default function JanjiTemu() {
     onError: () => {
       toast.error('Terjadi kesalahan, coba lagi!');
       setIsLoading(false);
-      reset(); // Reset form jika ada error
+      reset();
     },
   });
 
@@ -132,6 +132,7 @@ export default function JanjiTemu() {
               className="mb-3 mt-2 w-fit rounded-md border px-3 py-[12px] text-xs md:py-[10px] md:text-sm xl:text-base"
               type="date"
               id="tanggal"
+              min={new Date().toISOString().split('T')[0]}
               {...register('tanggal', {
                 required: 'Pilih tanggal janji temu!',
               })}
