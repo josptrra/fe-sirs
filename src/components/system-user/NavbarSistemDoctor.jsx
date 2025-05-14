@@ -28,7 +28,7 @@ export default function NavbarSistemDoctor() {
         <NavbarSistemList NavList="Pemeriksaan Pasien" href="/doctor/periksa" />
         <NavbarSistemList
           NavList="Rekam Medis Pasien"
-          href="/doctor/rekammedis"
+          href="/doctor/riwayatpasien"
         />
         <NavbarSistemHead NavHead="Akun" />
         <button

@@ -1,10 +1,50 @@
-import React, { useState } from 'react';
+import { GetUserById } from '@/services/getUserData';
+import { getPeriksas } from '@/services/pemeriksaan';
+import { getIdDokterFromCookies } from '@/services/getDoctorsId';
+import { useQuery } from '@tanstack/react-query';
+import React, { useState, useEffect } from 'react';
 
 export default function RiwayatPasien() {
   const [data, setData] = useState([]);
+
+  const { isLoading: isLoadingUser, data: user } = useQuery({
+    queryKey: ['dataUser'],
+    queryFn: () => GetUserById(),
+  });
+
+  const { isLoadingPeriksa: isLoadingPeriksas, data: periksaData } = useQuery({
+    queryKey: ['DataPeriksa'],
+    queryFn: getPeriksas,
+  });
+
+  // Filter data periksa berdasarkan idDokter yang ada di cookies
+  useEffect(() => {
+    const fetchIdDokterAndFilterData = async () => {
+      try {
+        const idDokter = await getIdDokterFromCookies();
+        if (periksaData && idDokter) {
+          // Filter data berdasarkan idDokter
+          const filteredData = periksaData.filter(
+            (item) => item.dokter.idDokter === idDokter
+          );
+          setData(filteredData);
+        }
+      } catch (err) {
+        console.error('Error saat memfilter data pemeriksaan:', err);
+      }
+    };
+
+    fetchIdDokterAndFilterData();
+  }, [periksaData]);
+
+  if (isLoadingPeriksas) return <p>Loading...</p>;
+
   return (
     <div className="layanan-global-container">
       <div className="w-full rounded-xl bg-white px-8 md:rounded lg:px-4">
+        <h1 className="py-4 text-xl font-semibold">
+          Daftar Pasien yang telah anda diagnosa!
+        </h1>
         <div className="overflow-x-scroll pb-8 2xl:overflow-visible">
           <table className="table-container">
             <thead>
@@ -12,16 +52,10 @@ export default function RiwayatPasien() {
                 <th className="w-[3%] border-r border-gray-300 px-4 py-3">
                   No.
                 </th>
-                <th className="w-[15%] border-r border-gray-300 px-4 py-3">
+                <th className="w-[10%] border-r border-gray-300 px-4 py-3">
                   Pasien Terdaftar
                 </th>
-                <th className="w-[15%] border-r border-gray-300 px-4 py-3">
-                  NIK Pasien
-                </th>
-                <th className="w-[5%] border-r border-gray-300 px-4 py-3">
-                  Umur
-                </th>
-                <th className="w-[15%] border-r border-gray-300 px-4 py-3">
+                <th className="w-[10%] border-r border-gray-300 px-4 py-3">
                   Dokter Pemeriksa
                 </th>
                 <th className="w-[10%] border-r border-gray-300 px-4 py-2">
@@ -31,15 +65,15 @@ export default function RiwayatPasien() {
                   Keluhan
                 </th>
                 <th className="w-[25%] border-r border-gray-300 px-4 py-2">
-                  Hasil Periksa
+                  Analisa
                 </th>
-                <th className="w-[15%] border-r border-gray-300 px-4 py-3">
+                <th className="w-[25%] border-r border-gray-300 px-4 py-3">
                   Resep Obat
                 </th>
               </tr>
             </thead>
             <tbody>
-              {data?.length > 0 ? (
+              {data.length > 0 ? (
                 data.map((e, index) => (
                   <tr
                     key={index}
@@ -51,33 +85,29 @@ export default function RiwayatPasien() {
                       {index + 1}
                     </td>
                     <td className="td-default-table">
-                      <p className="p-break-words">{e.unitkerja}</p>
+                      <p className="p-break-words">{e.pasien.namaPasien}</p>
                     </td>
                     <td className="border border-gray-300 px-4 py-2">
-                      {formatDateTimeID(e.createdAt)}
+                      <p>{user.nama}</p>
                     </td>
                     <td className="border border-gray-300 px-4 py-2">
-                      {e.jenispengajuan}
+                      {new Date(e.tanggal).toLocaleDateString()}
                     </td>
                     <td className="td-default-table">
-                      <p className="p-break-words">{e.namapenanggungjawab}</p>
+                      <p className="p-break-words">{e.keluhan}</p>
                     </td>
                     <td className="border border-gray-300 px-4 py-2">
-                      {formatDateTimeID(e.waktupemroses)}
+                      <p>{e.analisa}</p>
                     </td>
-                    <td className="td-default-table">
-                      <p className="p-break-words">{e.namaadminpemroses}</p>
+                    <td className="border border-gray-300 px-4 py-3">
+                      <p>{e.resepObat}</p>
                     </td>
-                    <td className="border border-gray-300 px-4 py-2">
-                      <StatusLayanan type={e.status} />
-                    </td>
-                    <td className="border border-gray-300 px-4 py-2"> </td>
                   </tr>
                 ))
               ) : (
                 <tr>
-                  <td colSpan={9} className="border border-gray-300 py-5">
-                    <p>Belum ada riwayat pengobatan untuk saat ini!</p>
+                  <td colSpan={7} className="border border-gray-300 py-5">
+                    <p>Belum ada riwayat pemeriksaan untuk dokter ini!</p>
                   </td>
                 </tr>
               )}

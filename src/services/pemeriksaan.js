@@ -19,17 +19,12 @@ export async function PostFormPemeriksaan(data, janjiTemuId) {
       resepObat: data.resepObat,
     };
 
-    // Kirim data pemeriksaan
     const response = await axios.post(`${apiurl}/pemeriksaan`, requestData);
 
     if (response.status === 201) {
-      // Pastikan statusnya 201 untuk Created
       console.log('Pemeriksaan berhasil dibuat:', response.data);
 
-      // Setelah pemeriksaan berhasil, hapus janji temu
       const deleteResponse = await deleteJanjiTemu(janjiTemuId);
-
-      // Cek apakah penghapusan janji temu berhasil
       if (deleteResponse.status === 200) {
         console.log('Janji temu berhasil dihapus');
       } else {
@@ -39,7 +34,6 @@ export async function PostFormPemeriksaan(data, janjiTemuId) {
 
       return response.data;
     } else {
-      console.error('Gagal mengirim pemeriksaan:', response.statusText);
       return null;
     }
   } catch (error) {
@@ -58,3 +52,35 @@ export const deleteJanjiTemu = async (id) => {
     throw new Error('Gagal menghapus janji temu');
   }
 };
+
+// export async function getPeriksasByDokter() {
+//   try {
+//     // const cookieStore = await cookies();
+//     // const idDokter = cookieStore.get('id');
+
+//     // if (!idDokter) {
+//     //   throw new Error('ID Dokter tidak ditemukan di cookies');
+//     const response = await axios.get(apiurl + `/doctors`);
+//     return response.data.data;
+//     }
+
+//     // const response = await axios.get(`${apiurl}/pemeriksaan`);
+
+//     // return response.data.data;
+//   } catch (error) {
+//     // console.error('Error saat mengambil data periksa:', err);
+//     // throw new Error('Gagal mengambil periksa');
+//     console.error('Failed to fetch doctors:', error);
+//     throw error;
+//   }
+// }
+
+export async function getPeriksas() {
+  try {
+    const response = await axios.get(apiurl + `/pemeriksaan`);
+    return response.data.data;
+  } catch (error) {
+    console.error('Failed to fetch doctors:', error);
+    throw error;
+  }
+}
