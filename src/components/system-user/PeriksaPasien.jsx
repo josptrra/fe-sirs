@@ -3,7 +3,7 @@
 import React, { useState } from 'react';
 import { getJanjiTemuByDokter } from '@/services/janjiTemu';
 import { useQuery } from '@tanstack/react-query';
-import { getIdDokterFromCookies } from '@/services/getDoctorsId';
+import { getIdDokterFromCookies } from '@/services/getUsersIdWithCookies';
 import { GetUserById } from '@/services/getUserData';
 import { Dialog, DialogContent, DialogTrigger } from '@/components/ui/dialog';
 import ButtonSistem from '../ui/ButtonSistem';

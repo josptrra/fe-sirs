@@ -1,6 +1,6 @@
 import { GetUserById } from '@/services/getUserData';
 import { getPeriksas } from '@/services/pemeriksaan';
-import { getIdDokterFromCookies } from '@/services/getDoctorsId';
+import { getIdDokterFromCookies } from '@/services/getUsersIdWithCookies';
 import { useQuery } from '@tanstack/react-query';
 import React, { useState, useEffect } from 'react';
 

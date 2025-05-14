@@ -12,3 +12,13 @@ export async function getAllDoctors() {
     throw error;
   }
 }
+
+export async function getDoctorNameById(idDokter) {
+  try {
+    const response = await axios.get(`${apiurl}/users/${idDokter}`);
+    return response.data.data.nama;
+  } catch (error) {
+    console.error('Failed to fetch doctor name:', error);
+    throw error;
+  }
+}
