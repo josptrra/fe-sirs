@@ -22,6 +22,7 @@ export default function PeriksaPasien() {
   const { isLoading: isLoadingUser, data: user } = useQuery({
     queryKey: ['dataUser'],
     queryFn: () => GetUserById(),
+    refetchOnWindowFocus: true,
   });
 
   const { isLoadingJanjiTemu: isLoadingJanjiTemus, data: janjiTemuData } =
@@ -49,9 +50,21 @@ export default function PeriksaPasien() {
   }, [janjiTemuData]);
 
   const handleFormSubmit = async (event) => {
-    event.preventDefault(); // Mencegah refresh halaman
+    event.preventDefault(); // Prevent page refresh
 
-    if (!selectedJanjiTemu) return;
+    // Ensure the selectedJanjiTemu is valid
+    if (!selectedJanjiTemu) {
+      toast.error(
+        'Anda hanya bisa mengisi form sesuai pada tanggal yang terlampir.'
+      );
+      return;
+    }
+
+    // Log the selected janjiTemu to ensure it's the correct data
+    console.log(
+      'Selected Janji Temu Data before submission:',
+      selectedJanjiTemu
+    );
 
     const formData = {
       idPasien: selectedJanjiTemu.pasien.idPasien._id,
@@ -66,6 +79,8 @@ export default function PeriksaPasien() {
       analisa,
       resepObat,
     };
+
+    console.log('Form Data being submitted:', formData);
 
     try {
       const response = await PostFormPemeriksaan(
@@ -93,6 +108,7 @@ export default function PeriksaPasien() {
   };
 
   const today = new Date().toISOString().split('T')[0]; // format: 'YYYY-MM-DD'
+
   return (
     <div className="layanan-global-container">
       <div className="w-full rounded-xl bg-white px-8 md:rounded lg:px-4">
@@ -152,16 +168,7 @@ export default function PeriksaPasien() {
               </tr>
             </thead>
             <tbody>
-              {isLoadingJanjiTemus ? (
-                <tr>
-                  <td
-                    colSpan={9}
-                    className="border border-gray-300 py-5 text-center"
-                  >
-                    <p>Loading...</p>
-                  </td>
-                </tr>
-              ) : data.length > 0 ? (
+              {data.length > 0 ? (
                 data.map((e, index) => {
                   const isDisabled =
                     new Date(e.tanggal).toISOString().split('T')[0] !== today;
@@ -203,10 +210,11 @@ export default function PeriksaPasien() {
                                   ? 'bg-gray-400 cursor-not-allowed'
                                   : 'bg-blue-900'
                               }`}
-                              onClick={(e) => {
+                              onClick={() => {
                                 if (!isDisabled) {
-                                  console.log('Selected Janji Temu ID:', e._id);
-                                  setSelectedJanjiTemu(e);
+                                  // Log the event here to verify that it is correct
+                                  console.log('Selected Janji Temu Data:', e);
+                                  setSelectedJanjiTemu(e); // Set the actual data instead of the event
                                 }
                               }}
                             >
@@ -274,6 +282,7 @@ export default function PeriksaPasien() {
                                 <input
                                   className="text-sm border py-2 px-3 font-light outline-none w-full"
                                   value={analisa}
+                                  required
                                   onChange={(e) => setAnalisa(e.target.value)}
                                 />
                               </div>
@@ -284,6 +293,7 @@ export default function PeriksaPasien() {
                                 <input
                                   className="text-sm border py-2 px-3 font-light outline-none w-full"
                                   value={resepObat}
+                                  required
                                   onChange={(e) => setResepObat(e.target.value)}
                                 />
                               </div>

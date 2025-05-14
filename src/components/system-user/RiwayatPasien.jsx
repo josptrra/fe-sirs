@@ -10,6 +10,7 @@ export default function RiwayatPasien() {
   const { isLoading: isLoadingUser, data: user } = useQuery({
     queryKey: ['dataUser'],
     queryFn: () => GetUserById(),
+    refetchOnWindowFocus: true,
   });
 
   const { isLoadingPeriksa: isLoadingPeriksas, data: periksaData } = useQuery({

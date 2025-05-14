@@ -13,6 +13,7 @@ import { PostFormJanjiTemu } from '@/services/janjiTemu';
 import { useForm } from 'react-hook-form';
 import { useMutation } from '@tanstack/react-query';
 import toast from 'react-hot-toast';
+import { getDateToday } from '@/lib/indoDate';
 
 export default function JanjiTemu() {
   const { isLoading: isLoadingDoctor, data: doctors } = useQuery({
@@ -138,7 +139,7 @@ export default function JanjiTemu() {
               className="mb-3 mt-2 w-fit rounded-md border px-3 py-[12px] text-xs md:py-[10px] md:text-sm xl:text-base"
               type="date"
               id="tanggal"
-              min={new Date().toISOString().split('T')[0]}
+              min={getDateToday()}
               {...register('tanggal', {
                 required: 'Pilih tanggal janji temu!',
               })}

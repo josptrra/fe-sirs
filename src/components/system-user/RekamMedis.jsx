@@ -12,6 +12,7 @@ export default function RekamMedis() {
   const { isLoading: isLoadingUser, data: user } = useQuery({
     queryKey: ['dataUser'],
     queryFn: () => GetUserById(),
+    refetchOnWindowFocus: true,
   });
 
   const { isLoadingPeriksa: isLoadingPeriksas, data: periksaData } = useQuery({
@@ -111,9 +112,7 @@ export default function RekamMedis() {
                       <p className="p-break-words">{e.pasien.namaPasien}</p>
                     </td>
                     <td className="border border-gray-300 px-4 py-2">
-                      <p>
-                        Dr. {dokterNames[e.dokter.idDokter] || 'Loading...'}
-                      </p>
+                      <p>{`Dr. ${dokterNames[e.dokter.idDokter] || '...'}`}</p>
                     </td>
                     <td className="border border-gray-300 px-4 py-2">
                       {new Date(e.tanggal).toLocaleDateString()}
