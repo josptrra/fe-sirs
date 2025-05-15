@@ -39,3 +39,37 @@ export async function fetchPasienDokterHariIni() {
     return [];
   }
 }
+
+export async function fetchPasienDokterBesok() {
+  try {
+    const response = await fetch(apiurl + `/doctors/handlePasienBesok`);
+    const data = await response.json();
+
+    if (response.ok && data.status === 'success') {
+      return data.data;
+    } else {
+      console.error('Failed to fetch pasien data:', data.message);
+      return [];
+    }
+  } catch (error) {
+    console.error('Error fetching pasien data:', error);
+    return [];
+  }
+}
+
+export async function fetchPasienDokterLusa() {
+  try {
+    const response = await fetch(apiurl + `/doctors/handlePasienLusa`);
+    const data = await response.json();
+
+    if (response.ok && data.status === 'success') {
+      return data.data;
+    } else {
+      console.error('Failed to fetch pasien data:', data.message);
+      return [];
+    }
+  } catch (error) {
+    console.error('Error fetching pasien data:', error);
+    return [];
+  }
+}

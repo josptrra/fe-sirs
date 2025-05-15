@@ -20,6 +20,22 @@ export async function RegisterUser(data) {
   }
 }
 
+export async function RegisterDokter(data) {
+  try {
+    const response = await axios.post(`${apiurl}/doctors`, {
+      email: data.email,
+      password: data.password,
+      nama: data.nama,
+      spesialisasi: data.spesialisasi,
+    });
+
+    return response.data;
+  } catch (err) {
+    console.log(err);
+    throw new Error('Registration failed');
+  }
+}
+
 export async function LoginUser(data) {
   try {
     const response = await axios.post(`${apiurl}/users/login`, {

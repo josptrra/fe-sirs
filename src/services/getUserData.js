@@ -21,3 +21,18 @@ export async function GetUserById() {
     throw new Error('Gagal mengambil data pengguna');
   }
 }
+
+export async function GetAllUsers() {
+  try {
+    const response = await axios.get(`${apiurl}/users`);
+
+    if (response.data.status !== 'success') {
+      throw new Error('Gagal mengambil data pengguna');
+    }
+
+    return response.data.data;
+  } catch (err) {
+    console.error('Error saat mengambil data pengguna:', err);
+    throw new Error('Gagal mengambil data pengguna');
+  }
+}

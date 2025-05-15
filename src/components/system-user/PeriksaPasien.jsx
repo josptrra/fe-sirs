@@ -103,7 +103,10 @@ export default function PeriksaPasien() {
         }, 3000);
       }
     } catch (error) {
-      console.error('Error saat mengirim data pemeriksaan:', error);
+      console.error(
+        'Error saat mengirim data pemeriksaan: Coba untuk merefresh halaman.',
+        error
+      );
     }
   };
 
@@ -125,7 +128,7 @@ export default function PeriksaPasien() {
                 ...
               </button>
               <p className="italic text-sm">
-                tombol ini artinya dokter bisa lanjut mengisi form pemeriksaan!
+                : dokter bisa lanjut mengisi form pemeriksaan!
               </p>
             </div>
             <div className="flex gap-2 items-center">
@@ -133,8 +136,8 @@ export default function PeriksaPasien() {
                 ...
               </button>
               <p className="italic text-sm">
-                tombol ini artinya disabled, ini karena janji temu yang dibuat
-                pasien bukan untuk pemeriksaan hari ini.
+                : disabled, ini karena janji temu yang dibuat pasien bukan untuk
+                pemeriksaan hari ini.
               </p>
             </div>
           </div>
